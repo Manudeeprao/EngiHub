@@ -20,10 +20,27 @@ public class Project {
     @Column(length = 2000)
     private String description;
     private String disciplines; // Comma-separated engineer types
-    private String status;
+    private String status = "Open"; // Default status
     private Double budget;
     private String startDate;
     private String endDate;
+
+    // Constructors
+    public Project() {
+        this.status = "Open";
+    }
+
+    public Project(Long clientId, String title, String description, String disciplines, 
+                   Double budget, String startDate, String endDate) {
+        this.clientId = clientId;
+        this.title = title;
+        this.description = description;
+        this.disciplines = disciplines;
+        this.budget = budget;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = "Open";
+    }
 
     // Getters and Setters
     public Long getId() { return id; }
@@ -44,4 +61,19 @@ public class Project {
     public void setStartDate(String startDate) { this.startDate = startDate; }
     public String getEndDate() { return endDate; }
     public void setEndDate(String endDate) { this.endDate = endDate; }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", clientId=" + clientId +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", disciplines='" + disciplines + '\'' +
+                ", status='" + status + '\'' +
+                ", budget=" + budget +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                '}';
+    }
 }

@@ -237,6 +237,9 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Form completely reset');
     }
 
+    // Setup navigation for switching between sections
+    setupNavigation();
+
     if (postProjectBtn && projectFormSection) {
         postProjectBtn.addEventListener('click', function() {
             console.log('Post a New Project button clicked');
@@ -753,5 +756,199 @@ function displayEngineerProfiles(engineers) {
     // Scroll to results
     console.log('Scrolling to results section');
     resultsSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+// ========== PROJECTS DISPLAY FUNCTIONS ==========
+async function loadAndDisplayProjects() {
+    const clientEmail = localStorage.getItem('userEmail');
+    if (!clientEmail) {
+        showNoProjects();
+        return;
+    }
+    
+    try {
+        // Get user ID from email
+        const userRes = await fetch(`http://localhost:8080/api/auth/getUserId?email=${encodeURIComponent(clientEmail)}`);
+        const userData = await userRes.json();
+        const clientId = userData.id;
+        
+        // Get projects for this client
+        const projectRes = await fetch(`http://localhost:8080/api/projects/client/${clientId}`);
+        const projects = await projectRes.json();
+        
+        displayClientProjects(projects);
+    } catch (err) {
+        console.error('Error loading projects:', err);
+        showNoProjects();
+    }
+}
+
+function displayClientProjects(projects) {
+    const container = document.getElementById('projects-list');
+    if (!container) return;
+    
+    if (!projects || projects.length === 0) {
+        showNoProjects();
+        return;
+    }
+    
+    container.innerHTML = projects.map(p => {
+        // Get status color
+        let badgeColor = '#0066cc'; // Blue for Open
+        if (p.status === 'Ongoing') {
+            badgeColor = '#ff9800'; // Orange
+        } else if (p.status === 'Completed') {
+            badgeColor = '#28a745'; // Green
+        }
+        
+        return `
+            <div class="project-item" style="border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 8px; background: white;">
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                    <h3 style="margin: 0; flex: 1;">${p.title || 'Untitled'}</h3>
+                    <span style="background-color: ${badgeColor}; color: white; padding: 5px 12px; border-radius: 15px; font-size: 12px; font-weight: bold; white-space: nowrap; margin-left: 10px;">${p.status || 'Open'}</span>
+                </div>
+                <p><strong>Description:</strong> ${p.description || 'N/A'}</p>
+                <p><strong>Budget:</strong> $${p.budget || '0'}</p>
+                <p><strong>Timeline:</strong> ${p.startDate} to ${p.endDate}</p>
+                <p><strong>Disciplines:</strong> ${p.disciplines || 'N/A'}</p>
+                <div style="margin-top: 10px; display: flex; gap: 10px; align-items: center;">
+                    <label for="status-${p.id}" style="font-weight: bold; margin: 0;">Update Status:</label>
+                    <select id="status-${p.id}" style="padding: 5px 10px; border-radius: 4px; border: 1px solid #ccc;">
+                        <option value="Open" ${p.status === 'Open' ? 'selected' : ''}>Open</option>
+                        <option value="Ongoing" ${p.status === 'Ongoing' ? 'selected' : ''}>Ongoing</option>
+                        <option value="Completed" ${p.status === 'Completed' ? 'selected' : ''}>Completed</option>
+                    </select>
+                    <button onclick="updateClientProjectStatus(${p.id})" style="padding: 5px 15px; background-color: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Update</button>
+                </div>
+                <div style="margin-top: 12px; border-top: 1px solid #ddd; padding-top: 12px;">
+                    <button onclick="toggleClientActivityLog(${p.id})" style="background: none; border: none; color: #0066cc; cursor: pointer; font-weight: bold; text-decoration: underline; padding: 0;">📋 Project Activity</button>
+                    <div id="activity-log-${p.id}" style="display: none; margin-top: 10px; max-height: 200px; overflow-y: auto; background: #f5f5f5; padding: 10px; border-radius: 4px;">
+                        <div style="text-align: center; color: #999;">Loading activity...</div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function showNoProjects() {
+    const container = document.getElementById('projects-list');
+    if (container) {
+        container.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;"><p>No projects created yet. <a href="#" style="color: #0066cc; text-decoration: underline;">Post a new project</a></p></div>';
+    }
+}
+
+async function updateClientProjectStatus(projectId) {
+    const statusSelect = document.getElementById(`status-${projectId}`);
+    const newStatus = statusSelect.value;
+    
+    try {
+        const response = await fetch(`http://localhost:8080/api/projects/${projectId}/status`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ status: newStatus })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            alert(`Project status updated to: ${newStatus}`);
+            loadAndDisplayProjects();
+        } else {
+            alert('Failed to update status: ' + result.message);
+        }
+    } catch (err) {
+        console.error('Error updating status:', err);
+        alert('Error updating project status');
+    }
+}
+
+// Toggle and load client activity log
+async function toggleClientActivityLog(projectId) {
+    const activityDiv = document.getElementById(`activity-log-${projectId}`);
+    
+    if (activityDiv.style.display === 'none') {
+        activityDiv.style.display = 'block';
+        // Load activity logs if not already loaded
+        if (activityDiv.children.length === 1 && activityDiv.children[0].textContent === 'Loading activity...') {
+            await loadClientActivityLog(projectId);
+        }
+    } else {
+        activityDiv.style.display = 'none';
+    }
+}
+
+// Load and display activity logs for client dashboard
+async function loadClientActivityLog(projectId) {
+    try {
+        const response = await fetch(`http://localhost:8080/api/projects/${projectId}/activity`);
+        const result = await response.json();
+        const activityLogs = result.data || [];
+        
+        const activityDiv = document.getElementById(`activity-log-${projectId}`);
+        
+        if (!activityLogs || activityLogs.length === 0) {
+            activityDiv.innerHTML = '<p style="color: #999; margin: 0; font-size: 14px;">No activity yet</p>';
+            return;
+        }
+        
+        let activityHTML = '';
+        activityLogs.forEach(log => {
+            const logDate = new Date(log.timestamp);
+            const timeAgo = getTimeAgo(logDate);
+            activityHTML += `<p style="margin: 8px 0; font-size: 14px;">• ${timeAgo} — ${log.message}</p>`;
+        });
+        
+        activityDiv.innerHTML = activityHTML;
+    } catch (err) {
+        console.error('Error loading activity logs:', err);
+        const activityDiv = document.getElementById(`activity-log-${projectId}`);
+        activityDiv.innerHTML = '<p style="color: #dc3545; margin: 0; font-size: 14px;">Failed to load activity</p>';
+    }
+}
+
+// Helper function to format time ago
+function getTimeAgo(date) {
+    const now = new Date();
+    const seconds = Math.floor((now - date) / 1000);
+    
+    if (seconds < 60) return 'Just now';
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+    const days = Math.floor(hours / 24);
+    return `${days} day${days > 1 ? 's' : ''} ago`;
+}
+
+// Setup navigation links to show different sections
+function setupNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach((link, index) => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Hide all sections first
+            document.getElementById('welcome-section').classList.add('hidden');
+            document.getElementById('dashboard-section').classList.add('hidden');
+            document.getElementById('project-form-section').classList.add('hidden');
+            document.getElementById('projects-section').classList.add('hidden');
+            document.getElementById('matchmaking-section').classList.add('hidden');
+            document.getElementById('results-section').classList.add('hidden');
+            
+            // Show appropriate section
+            if (index === 1) {
+                // Dashboard
+                document.getElementById('dashboard-section').classList.remove('hidden');
+                document.getElementById('dashboard-username').textContent = localStorage.getItem('username') || 'User';
+            } else if (index === 2) {
+                // Projects
+                document.getElementById('projects-section').classList.remove('hidden');
+                loadAndDisplayProjects();
+            }
+        });
+    });
 }
 

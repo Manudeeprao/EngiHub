@@ -16,9 +16,11 @@ import com.engihub.backend.dto.APIResponseDTO;
 import com.engihub.backend.model.Assignment;
 import com.engihub.backend.model.Engineer;
 import com.engihub.backend.model.Project;
+import com.engihub.backend.model.User;
 import com.engihub.backend.repository.AssignmentRepository;
 import com.engihub.backend.repository.EngineerRepository;
 import com.engihub.backend.repository.ProjectRepository;
+import com.engihub.backend.repository.UserRepository;
 
 @RestController
 @RequestMapping("/api/assignments")
@@ -29,6 +31,8 @@ public class AssignmentController {
     private ProjectRepository projectRepository;
     @Autowired
     private EngineerRepository engineerRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/engineer/{userId}")
     public ResponseEntity<APIResponseDTO> getAssignmentsForEngineer(@PathVariable Long userId) {
@@ -39,19 +43,23 @@ public class AssignmentController {
             if (eng != null && eng.getUserId().equals(userId)) {
                 Project p = projectRepository.findById(a.getProjectId()).orElse(null);
                 if (p != null) {
-                    // Get client name
+                    // Get client name from User table
                     String clientName = "N/A";
                     try {
-                        com.engihub.backend.model.User client = null;
-                        java.lang.reflect.Field clientIdField = p.getClass().getDeclaredField("clientId");
-                        clientIdField.setAccessible(true);
-                        Long clientId = (Long) clientIdField.get(p);
-                        client = (com.engihub.backend.model.User) Class.forName("com.engihub.backend.model.User").getDeclaredConstructor().newInstance();
-                        // Use repository to get client name
-                        // This is a hack, ideally inject UserRepository
-                        clientName = "Client"; // Replace with actual lookup if possible
-                    } catch (Exception e) {}
-                    assignedProjects.add(new ProjectDetailsDTO(p.getTitle(), p.getDescription(), clientName, p.getStartDate(), p.getEndDate(), p.getStatus(), p.getBudget()));
+                        User client = userRepository.findById(p.getClientId()).orElse(null);
+                        if (client != null && client.getName() != null) {
+                            clientName = client.getName();
+                        } else if (client != null) {
+                            clientName = client.getEmail();
+                        }
+                    } catch (Exception e) {
+                        // If error, keep clientName as "N/A"
+                    }
+                    
+                    // Get engineer experience
+                    String engineerExperience = eng.getExperience() != null ? eng.getExperience() : "N/A";
+                    
+                    assignedProjects.add(new ProjectDetailsDTO(p.getId(), p.getTitle(), p.getDescription(), clientName, p.getStartDate(), p.getEndDate(), p.getStatus(), p.getBudget(), engineerExperience));
                 }
             }
         }
@@ -141,6 +149,7 @@ public class AssignmentController {
 
     // DTO for frontend project details
     public static class ProjectDetailsDTO {
+        public Long id;
         public String title;
         public String description;
         public String clientName;
@@ -148,7 +157,10 @@ public class AssignmentController {
         public String endDate;
         public String status;
         public Double budget;
-        public ProjectDetailsDTO(String title, String description, String clientName, String startDate, String endDate, String status, Double budget) {
+        public String engineerExperience;
+        
+        public ProjectDetailsDTO(Long id, String title, String description, String clientName, String startDate, String endDate, String status, Double budget) {
+            this.id = id;
             this.title = title;
             this.description = description;
             this.clientName = clientName;
@@ -156,6 +168,19 @@ public class AssignmentController {
             this.endDate = endDate;
             this.status = status;
             this.budget = budget;
+            this.engineerExperience = "N/A";
+        }
+        
+        public ProjectDetailsDTO(Long id, String title, String description, String clientName, String startDate, String endDate, String status, Double budget, String engineerExperience) {
+            this.id = id;
+            this.title = title;
+            this.description = description;
+            this.clientName = clientName;
+            this.startDate = startDate;
+            this.endDate = endDate;
+            this.status = status;
+            this.budget = budget;
+            this.engineerExperience = engineerExperience;
         }
     }
 }

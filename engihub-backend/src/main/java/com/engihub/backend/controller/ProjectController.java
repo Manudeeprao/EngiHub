@@ -4,26 +4,36 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.engihub.backend.dto.APIResponseDTO;
+import com.engihub.backend.dto.UpdateProjectStatusDTO;
+import com.engihub.backend.model.ActivityLog;
 import com.engihub.backend.model.Assignment;
 import com.engihub.backend.model.Project;
 import com.engihub.backend.repository.AssignmentRepository;
 import com.engihub.backend.repository.EngineerRepository;
+import com.engihub.backend.repository.ProjectRepository;
+import com.engihub.backend.service.ActivityLogService;
 import com.engihub.backend.service.ProjectService;
 import com.engihub.backend.util.ProjectStatusUpdater;
 
 @RestController
 @RequestMapping("/api/projects")
+@CrossOrigin(origins = "*")
 public class ProjectController {
     @Autowired
     private ProjectService projectService;
+    
+    @Autowired
+    private ProjectRepository projectRepository;
     
     @Autowired
     private ProjectStatusUpdater projectStatusUpdater;
@@ -33,6 +43,9 @@ public class ProjectController {
     
     @Autowired
     private EngineerRepository engineerRepository;
+    
+    @Autowired
+    private ActivityLogService activityLogService;
 
     @PostMapping("/create")
     public ResponseEntity<APIResponseDTO> createProject(@RequestBody Project project) {
@@ -136,6 +149,63 @@ public class ProjectController {
         APIResponseDTO response = new APIResponseDTO(true, "Remaining days calculated");
         response.setData(remainingDays);
         return ResponseEntity.ok(response);
+    }
+    
+    @PutMapping("/{id}/status")
+    public ResponseEntity<APIResponseDTO> updateProjectStatus(
+            @PathVariable Long id,
+            @RequestBody UpdateProjectStatusDTO statusRequest) {
+        try {
+            Project project = projectRepository.findById(id).orElse(null);
+            
+            if (project == null) {
+                APIResponseDTO response = new APIResponseDTO(false, "Project not found");
+                return ResponseEntity.badRequest().body(response);
+            }
+            
+            // Validate status
+            String newStatus = statusRequest.getStatus();
+            if (!newStatus.matches("Open|Ongoing|Completed")) {
+                APIResponseDTO response = new APIResponseDTO(false, "Invalid status. Allowed values: Open, Ongoing, Completed");
+                return ResponseEntity.badRequest().body(response);
+            }
+            
+            // Update status
+            project.setStatus(newStatus);
+            projectRepository.save(project);
+            
+            // Log activity
+            activityLogService.logActivity(id, "Project status changed to " + newStatus);
+            
+            APIResponseDTO response = new APIResponseDTO(true, "Project status updated to: " + newStatus);
+            response.setData(project);
+            return ResponseEntity.ok(response);
+            
+        } catch (Exception e) {
+            APIResponseDTO response = new APIResponseDTO(false, "Error updating project status: " + e.getMessage());
+            return ResponseEntity.internalServerError().body(response);
+        }
+    }
+    
+    @GetMapping("/{id}/activity")
+    public ResponseEntity<APIResponseDTO> getProjectActivity(@PathVariable Long id) {
+        try {
+            Project project = projectRepository.findById(id).orElse(null);
+            
+            if (project == null) {
+                APIResponseDTO response = new APIResponseDTO(false, "Project not found");
+                return ResponseEntity.badRequest().body(response);
+            }
+            
+            List<ActivityLog> activityLogs = activityLogService.getActivityLogs(id);
+            APIResponseDTO response = new APIResponseDTO(true, "Activity logs retrieved");
+            response.setData(activityLogs);
+            return ResponseEntity.ok(response);
+            
+        } catch (Exception e) {
+            APIResponseDTO response = new APIResponseDTO(false, "Error retrieving activity logs: " + e.getMessage());
+            return ResponseEntity.internalServerError().body(response);
+        }
     }
     
     // DTO for creating project with assignments
