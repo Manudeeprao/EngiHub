@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EngiHub – Engineering Collaboration Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@400;500&family=Poppins:wght@400;500&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="page.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="https://i.ibb.co/JrHmQpr/uni-high-resolution-logo-transparent.png" alt="EngiHub Logo" id="engihub-logo">
+            <span class="logo-sub">EngiHub</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="#" class="nav-link">Dashboard</a>
+            <a href="#" class="nav-link">Projects</a>
+            <button class="logout-btn">Logout</button>
+            <span id="username-display" style="margin-left:20px;font-weight:500;"></span>
+        </nav>
+    </header>
+
+    <div class="modal hidden" id="logout-modal">
+        <div class="modal-content">
+            <h2>Successfully Logged Out!</h2>
+            <button class="modal-ok-btn">Return to Home</button>
+        </div>
+    </div>
+
+    <div class="modal hidden" id="success-modal">
+        <div class="modal-content">
+            <h2>You've Successfully Registered!</h2>
+            <button class="modal-ok-btn">Return to Home Screen</button>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <section class="welcome-section" id="welcome-section">
+            <h1 class="main-title">Welcome, <span id="welcome-username">User</span>! Let's begin your project.</h1>
+            <button class="post-project-btn">Post a New Project</button>
+        </section>
+        
+        <section class="project-form-section hidden" id="project-form-section">
+            <div class="form-card">
+                <h2 class="form-title">Post a New Project</h2>
+                <form id="project-form">
+                    <div class="form-group">
+                        <label for="project-title">Project Title</label>
+                        <input type="text" id="project-title" name="project-title" required placeholder="e.g., Build a Smart City Infrastructure">
+                    </div>
+                    <div class="form-group">
+                        <label for="project-description">Project Description</label>
+                        <textarea id="project-description" name="project-description" maxlength="1000" required placeholder="Provide a detailed description of your project..."></textarea>
+                        <div class="char-counter" id="char-counter">0/1000</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Engineering Disciplines</label>
+                        <div class="engineering-disciplines">
+                            <label><input type="checkbox" name="disciplines" value="Civil Engineer"> Civil Engineer</label>
+                            <label><input type="checkbox" name="disciplines" value="Mechanical Engineer"> Mechanical Engineer</label>
+                            <label><input type="checkbox" name="disciplines" value="Electrical Engineer"> Electrical Engineer</label>
+                            <label><input type="checkbox" name="disciplines" value="Computer Engineer"> Computer Engineer</label>
+                            <label><input type="checkbox" name="disciplines" value="Chemical Engineer"> Chemical Engineer</label>
+                            <label><input type="checkbox" name="disciplines" value="Structural Engineer"> Structural Engineer</label>
+                            <label><input type="checkbox" name="disciplines" value="Aerospace Engineer"> Aerospace Engineer</label>
+                            <label><input type="checkbox" name="disciplines" value="Biomedical Engineer"> Biomedical Engineer</label>
+                            <label><input type="checkbox" name="disciplines" value="Data Engineer"> Data Engineer</label>
+                            <label><input type="checkbox" name="disciplines" value="Systems Engineer"> Systems Engineer</label>
+                            <label><input type="checkbox" name="disciplines" value="Petroleum Engineer"> Petroleum Engineer</label>
+                            <label><input type="checkbox" name="disciplines" value="Nuclear Engineer"> Nuclear Engineer</label>
+                            <label><input type="checkbox" name="disciplines" value="Automotive Engineer"> Automotive Engineer</label>
+                            <label><input type="checkbox" name="disciplines" value="Agricultural Engineer"> Agricultural Engineer</label>
+                            <label><input type="checkbox" name="disciplines" value="Robotics Engineer"> Robotics Engineer</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="project-budget">Budget ($)</label>
+                        <input type="number" id="project-budget" name="project-budget" required min="0" step="0.01" placeholder="Enter your budget">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="project-start">Start Date</label>
+                            <input type="date" id="project-start" name="project-start" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="project-end">Deadline</label>
+                            <input type="date" id="project-end" name="project-end" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="file-upload-group">
+                        <label>Additional Files Upload</label>
+                        <div class="file-upload" id="file-upload">
+                            Drag & Drop files here or click to upload
+                        </div>
+                        <input type="file" id="additional-files" name="additional-files" style="display:none;" multiple>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Find Engineers</button>
+                </form>
+            </div>
+        </section>
+        
+        <section class="dashboard-section hidden" id="dashboard-section">
+            <div class="dashboard-card">
+                <h2 class="dashboard-title">Welcome, <span id="dashboard-username"></span>! Let's begin your project.</h2>
+                <div class="dashboard-stats">
+                    <div class="dashboard-stat">
+                        <div class="stat-label">Total Projects</div>
+                        <div class="stat-value" id="stat-total-projects">0</div>
+                    </div>
+                    <div class="dashboard-stat">
+                        <div class="stat-label">Open Projects</div>
+                        <div class="stat-value" id="stat-open-projects">0</div>
+                    </div>
+                    <div class="dashboard-stat">
+                        <div class="stat-label">Closed Projects</div>
+                        <div class="stat-value" id="stat-closed-projects">0</div>
+                    </div>
+                </div>
+                <div class="dashboard-summary">
+                    <h3>Platform Summary</h3>
+                    <ul>
+                        <li>Post new projects and find the best engineers for your needs.</li>
+                        <li>Track your project status and assigned teams.</li>
+                        <li>Use the navigation above to manage your projects and account.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="matchmaking-section hidden" id="matchmaking-section">
+            <div class="loading-container">
+                <div class="spinner"></div>
+                <div class="loading-animation">
+                    <span class="loading-text">Matching engineers...</span>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress" id="matching-progress"></div>
+            </div>
+            <div class="progress-text" id="progress-text">Matching 0%</div>
+        </section>
+
+        <section class="results-section hidden" id="results-section">
+            <h2>Matched Engineers</h2>
+            <div class="engineer-profiles" id="engineer-profiles"></div>
+        </section>
+    </main>
+    <script src="page.js"></script>
+</body>
+</html>

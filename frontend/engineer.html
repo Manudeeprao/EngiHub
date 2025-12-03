@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineer Dashboard | EngiHub</title>
+    <link rel="stylesheet" href="eng.css">
+</head>
+<body>
+    <header>
+        <h1>Engineer Dashboard</h1>
+        <button onclick="logout()">Logout</button>
+    </header>
+    <main>
+        <section>
+            <h2>Available Projects for Matching</h2>
+            <div id="availableProjects"></div>
+        </section>
+        <section>
+            <h2>Match Results</h2>
+            <div id="matchResults"></div>
+        </section>
+    </main>
+        <script src="scripts.js"></script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+                loadAvailableProjects();
+        });
+        </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Toggle Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .welcome {
+            text-align: center;
+            padding: 20px;
+            background: #f0f0f0;
+            margin: 20px 0;
+        }
+        .form-section {
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px 0;
+            display: flex;
+        }
+        .hidden {
+            display: none !important;
+        }
+        button {
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome">
+        <h1>Welcome!</h1>
+        <button id="toggle-btn">Post a New Project</button>
+    </div>
+
+    <section class="form-section hidden" id="form-section">
+        <div>
+            <h2>Project Form</h2>
+            <input type="text" placeholder="Project Title">
+            <textarea placeholder="Description"></textarea>
+            <button type="submit">Submit</button>
+        </div>
+    </section>
+
+    <script>
+        const btn = document.getElementById('toggle-btn');
+        const form = document.getElementById('form-section');
+
+        btn.addEventListener('click', function() {
+            console.log('Button clicked');
+            console.log('Has hidden:', form.classList.contains('hidden'));
+            form.classList.toggle('hidden');
+            console.log('After toggle - Has hidden:', form.classList.contains('hidden'));
+            if (!form.classList.contains('hidden')) {
+                console.log('Scrolling to form');
+                form.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>

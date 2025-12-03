@@ -1,0 +1,1174 @@
+/* --- EngiHub Premium Styling with Modern Design System --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@400;500&family=Poppins:wght@400;500&family=Pacifico&display=swap');
+
+/* Premium form card with subtle gradient and enhanced shadow */
+.form-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(26, 115, 232, 0.12);
+    border: 1px solid #f0f4ff;
+    padding: 36px 32px 28px 32px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+/* Form title in EngiHub primary blue */
+.form-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #1A73E8;
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 18px;
+    font-weight: 700;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+.form-row {
+    display: flex;
+    gap: 18px;
+}
+.form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+/* Modern form inputs with smooth transitions and brand color focus state */
+.form-card input[type="text"],
+.form-card input[type="number"],
+.form-card input[type="date"],
+.form-card textarea {
+    padding: 12px 14px;
+    border: 1.5px solid #e0e8f5;
+    border-radius: 10px;
+    font-size: 1em;
+    margin-top: 4px;
+    margin-bottom: 0;
+    background: #fafbfc;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-card input[type="text"]:focus,
+.form-card input[type="number"]:focus,
+.form-card input[type="date"]:focus,
+.form-card textarea:focus {
+    border-color: #1A73E8;
+    background: #fff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+}
+.form-card label {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 4px;
+}
+.form-card .engineering-disciplines {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin-top: 6px;
+}
+.form-card .engineering-disciplines label {
+    font-weight: 400;
+    color: #555;
+    margin-bottom: 0;
+}
+.form-card .char-counter {
+    text-align: right;
+    font-size: 0.92em;
+    color: #888;
+    margin-top: 2px;
+}
+/* Modern submit button with gradient and hover glow */
+.form-card .submit-btn {
+    padding: 12px 0;
+    background: linear-gradient(135deg, #1A73E8 0%, #1565c0 100%);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 16px rgba(26, 115, 232, 0.3);
+}
+
+.form-card .submit-btn:hover {
+    background: linear-gradient(135deg, #1565c0 0%, #1051a0 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(26, 115, 232, 0.45);
+}
+/* Main title in EngiHub primary blue with premium weight */
+.main-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #1A73E8;
+    font-size: 2.2em;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+/* Premium dashboard card with subtle gradient and enhanced shadow */
+.dashboard-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(26, 115, 232, 0.12);
+    border: 1px solid #f0f4ff;
+    padding: 32px 32px 24px 32px;
+    max-width: 600px;
+    margin: 0 auto 32px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+/* Dashboard title in EngiHub primary blue */
+.dashboard-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #1A73E8;
+    font-size: 1.3em;
+    text-align: center;
+    margin-bottom: 18px;
+    font-weight: 700;
+}
+.dashboard-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 18px;
+}
+.dashboard-stat {
+    background: #f7fafc;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px #e0e0e0;
+    padding: 18px 22px 14px 22px;
+    min-width: 120px;
+    text-align: center;
+}
+.stat-label {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 6px;
+}
+/* Enhanced dashboard stat value in EngiHub primary blue */
+.stat-value {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #1A73E8;
+}
+
+/* Modern dashboard section with subtle gradient background */
+.dashboard-section {
+    width: 100%;
+    max-width: 800px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+    padding: 32px 40px 24px 40px;
+    border-radius: 16px;
+    margin: 0 auto 32px auto;
+    box-shadow: 0 8px 32px rgba(26, 115, 232, 0.12);
+    border: 1px solid #f0f4ff;
+    margin-bottom: 32px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+.dashboard-section h1 {
+    font-size: 2em;
+    color: #1A73E8;
+    margin-bottom: 18px;
+}
+.dashboard-stats {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 18px;
+    justify-content: center;
+}
+.dashboard-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #eee;
+    padding: 18px 22px 14px 22px;
+    min-width: 140px;
+    text-align: center;
+}
+.stat-title {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 6px;
+}
+.stat-value {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #222;
+}
+/* Dashboard summary styling with EngiHub accent color */
+.dashboard-summary {
+    margin-top: 18px;
+    background: #f8fbff;
+    border-radius: 8px;
+    border-left: 4px solid #1A73E8;
+    padding: 16px 18px;
+}
+.dashboard-summary h3 {
+    color: #1A73E8;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+.dashboard-summary ul {
+    margin-left: 18px;
+    color: #444;
+    font-size: 1em;
+}
+/* Modal for projects list */
+.projects-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.projects-modal-content {
+    background: #fff;
+    padding: 32px 40px 24px 40px;
+    border-radius: 16px;
+    max-width: 700px;
+    width: 95%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+.close-modal-btn {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-size: 1.5em;
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.close-modal-btn:hover {
+    color: #dc3545;
+}
+.modal-title {
+    text-align: center;
+    margin-bottom: 18px;
+    font-family: 'Montserrat', sans-serif;
+    color: #007BFF;
+}
+.project-card-modal {
+    background: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #eee;
+    padding: 18px 22px 14px 22px;
+    margin-bottom: 18px;
+    transition: box-shadow 0.2s;
+}
+.project-card-modal:hover {
+    box-shadow: 0 4px 16px #ddd;
+}
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.project-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #222;
+}
+.project-status {
+    font-size: 0.98em;
+    font-weight: 500;
+    padding: 2px 10px;
+    border-radius: 12px;
+    background: #e0e0e0;
+    color: #333;
+}
+.status-open {
+    background: #d4edda;
+    color: #218838;
+}
+.status-other {
+    background: #ffeeba;
+    color: #856404;
+}
+.project-details-modal {
+    margin-bottom: 8px;
+    color: #444;
+    font-size: 1em;
+}
+.assigned-engineers-modal {
+    margin-top: 8px;
+    font-size: 0.98em;
+}
+.engineer-list-modal {
+    margin-top: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.engineer-card-modal {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px #e0e0e0;
+    padding: 10px 14px;
+    min-width: 180px;
+    margin-bottom: 4px;
+}
+.engineer-name {
+    font-weight: 600;
+    color: #007BFF;
+    margin-bottom: 2px;
+}
+.engineer-spec {
+    color: #555;
+    font-size: 0.97em;
+}
+.engineer-bio {
+    color: #666;
+    font-size: 0.95em;
+    margin-top: 2px;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+
+.header {
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: fadeInDown 0.5s ease-in-out;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px; 
+    width: auto;
+    margin-right: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+.logo-sub {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+}
+
+.nav-menu .nav-link {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-menu .nav-link:hover {
+    color: #1A73E8;
+}
+
+.logout-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 25px;
+    background-color: #dc3545;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-family: 'Roboto', sans-serif;
+}
+
+.logout-btn:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+
+.main-content {
+    padding: 40px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeInScale 0.5s ease-in-out;
+}
+
+.welcome-section {
+    text-align: center;
+    margin-bottom: 30px;
+    animation: fadeInText 1s ease-out;
+    width: 100%;
+    max-width: 800px;
+}
+
+.welcome-section h1 {
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Modern "Post a New Project" button with hover glow effect */
+.post-project-btn {
+    padding: 12px 32px;
+    background: linear-gradient(135deg, #34A853 0%, #2d8659 100%);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 16px rgba(52, 168, 83, 0.3);
+}
+
+.post-project-btn:hover {
+    background: linear-gradient(135deg, #2d8659 0%, #25704a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(52, 168, 83, 0.45);
+}
+
+
+.project-form-section {
+    width: 100%;
+    min-height: auto;
+    background-color: transparent;
+    padding: 30px 20px;
+    border-radius: 0;
+    box-shadow: none;
+    animation: fadeIn 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-form-section:not(.hidden) {
+    display: flex;
+}
+
+.project-form-section h2 {
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: #1A73E8;
+    text-align: center;
+}
+
+.project-form-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-form-section label {
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.project-form-section input[type="text"],
+.project-form-section input[type="number"],
+.project-form-section input[type="date"],
+.project-form-section textarea,
+.project-form-section select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.project-form-section input[type="text"]:focus,
+.project-form-section input[type="number"]:focus,
+.project-form-section input[type="date"]:focus,
+.project-form-section textarea:focus,
+.project-form-section select:focus {
+    border-color: #1A73E8;
+    outline: none;
+}
+
+.engineering-disciplines {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.engineering-disciplines label {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    color: #555;
+}
+
+.engineering-disciplines input {
+    margin-right: 5px;
+}
+
+#file-upload-group {
+    margin-top: 20px;
+}
+
+.file-upload {
+    border: 2px dashed #1A73E8;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    position: relative;
+}
+
+.file-upload.dragover {
+    background-color: #f0f8ff;
+    border-color: #0056b3;
+}
+
+.file-upload p {
+    color: #1A73E8;
+    font-weight: 500;
+}
+
+.file-upload input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.submit-btn {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #1A73E8 0%, #1565c0 100%);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    align-self: center;
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, #1565c0 0%, #1051a0 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(26, 115, 232, 0.4);
+}
+
+.char-counter {
+    text-align: right;
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Modern matchmaking section with premium styling */
+.matchmaking-section {
+    width: 100%;
+    max-width: 600px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(26, 115, 232, 0.12);
+    border: 1px solid #f0f4ff;
+    animation: fadeIn 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.robot-animation-container {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.robot-animation {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.loading-animation {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.loading-text {
+    animation: fade-blink 2s infinite;
+}
+
+@keyframes fade-blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.progress-text {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 1em;
+    color: #333;
+}
+
+/* Modern results section with premium styling */
+.results-section {
+
+.progress-bar {
+    width: 80%;
+    background-color: #e0e0e0;
+    border-radius: 25px;
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+.progress {
+    height: 20px;
+    background: linear-gradient(90deg, #1A73E8 0%, #4285F4 100%);
+    width: 0%;
+    transition: width 1s ease-in-out;
+    border-radius: 25px;
+}
+    width: 100%;
+    max-width: 800px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(26, 115, 232, 0.12);
+    border: 1px solid #f0f4ff;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.results-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1A73E8;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.engineer-profiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* ==================== ENGINEER PROFILE CARD STYLING ==================== */
+/* Modern premium engineer cards with enhanced visual hierarchy and interactions */
+.engineer-profile {
+    width: 250px;
+    background: #fff;
+    border: 2px solid #e8eef7;
+    border-radius: 16px;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+    box-shadow: 0 2px 12px rgba(26, 115, 232, 0.08);
+}
+
+.engineer-profile:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(26, 115, 232, 0.25);
+    border-color: #1A73E8;
+}
+
+.engineer-profile.selectable {
+    cursor: pointer;
+}
+
+/* Enhanced selected state with smooth transition and color highlight */
+.engineer-profile.selected {
+    border-color: #34A853;
+    background: linear-gradient(135deg, #f0f8f4 0%, #e8f5e9 100%);
+    box-shadow: 0 0 0 4px rgba(52, 168, 83, 0.15);
+}
+
+/* Selected indicator badge with premium styling */
+.engineer-profile.selected .select-indicator {
+    display: block;
+    background: linear-gradient(135deg, #34A853 0%, #2d8659 100%);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    margin-top: 12px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(52, 168, 83, 0.3);
+}
+
+.engineer-profile .select-indicator {
+    display: none;
+}
+
+/* Premium profile image placeholder with EngiHub blue gradient */
+.engineer-profile .profile-img-placeholder {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #1A73E8 0%, #4285F4 100%);
+    border-radius: 50%;
+    margin: 0 auto 12px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 2em;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(26, 115, 232, 0.3);
+}
+
+/* Engineer name heading styled with EngiHub primary blue */
+.engineer-profile h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.15em;
+    margin-bottom: 8px;
+    color: #1A73E8;
+    font-weight: 700;
+}
+
+/* Engineer profile details with updated brand colors */
+.engineer-profile p {
+    margin: 6px 0;
+    color: #666;
+    font-size: 0.9em;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.engineer-profile p b {
+    color: #34A853;
+    font-weight: 700;
+}
+
+.engineer-profile .button-group {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Modern "Proceed with Team" button with premium gradient and smooth interactions */
+.proceed-team-btn {
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #1A73E8 0%, #1765c0 100%);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.05em;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 30px;
+    margin-bottom: 10px;
+    align-self: center;
+    font-weight: 600;
+    min-width: 220px;
+    display: block !important;
+    box-shadow: 0 6px 20px rgba(26, 115, 232, 0.35);
+}
+
+.proceed-team-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #1565c0 0%, #1051a0 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 32px rgba(26, 115, 232, 0.5);
+}
+
+.proceed-team-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.proceed-team-btn:disabled {
+    background-color: #d3d3d3;
+    cursor: not-allowed;
+    opacity: 0.5;
+    box-shadow: none;
+}
+
+.proceed-team-btn.disabled {
+    background-color: #d3d3d3;
+    cursor: not-allowed;
+    opacity: 0.5;
+    box-shadow: none;
+}
+
+#success-modal .modal-content {
+    text-align: center;
+}
+
+#success-modal p {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #28a745;
+}
+
+#success-modal .modal-ok-btn {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+#success-modal .modal-ok-btn:hover {
+    background-color: #218838;
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(400px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(400px);
+    }
+}
+
+
+@keyframes fadeInLogo {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 1024px) {
+    .project-form-section, .matchmaking-section, .results-section {
+        padding: 25px 20px;
+    }
+
+    .engineer-profiles {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .engineer-profile {
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-menu .nav-link {
+        margin: 10px 0;
+    }
+
+    .project-form-section, .matchmaking-section, .results-section {
+        padding: 20px 15px;
+    }
+
+    .proceed-team-btn {
+        width: 100%;
+    }
+}
+
+
+.button-group button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+}
+
+.view-profile-btn {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.view-profile-btn:hover {
+    background-color: #5a6268;
+    transform: scale(1.05);
+}
+
+.contact-btn {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.contact-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.engineer-profile h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5em;
+    margin-top: 15px;
+    color: #333;
+}
+
+.engineer-profile p {
+    margin: 8px 0;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.engineer-profile .button-group {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-group button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button-group button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+
+.progress-bar {
+    width: 80%;
+    background-color: #e0e0e0;
+    border-radius: 25px;
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+.progress {
+    height: 20px;
+    background-color: #007BFF;
+    width: 0%;
+    transition: width 1s ease-in-out;
+}
+
+.progress-text {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 1em;
+    color: #333;
+}
+
+
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #1A73E8;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+.loading-animation {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#success-modal,
+#logout-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.6);
+    animation: fadeInOverlay 0.5s ease-in-out;
+}
+
+#success-modal .modal-content,
+#logout-modal .modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    animation: popupScale 0.5s ease-in-out;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+#success-modal h2,
+#logout-modal h2 { 
+    font-family: 'Montserrat', sans-serif;
+    color: #28a745;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+#success-modal .modal-ok-btn,
+#logout-modal .modal-ok-btn { 
+    padding: 12px 24px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s, transform 0.3s;
+    font-family: 'Roboto', sans-serif;
+}
+
+#success-modal .modal-ok-btn:hover,
+#logout-modal .modal-ok-btn:hover { 
+    background-color: #1e7e34;
+    transform: scale(1.05);
+}
+
+@keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes popupScale {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}

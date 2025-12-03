@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="signup.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <title>EngiHub – Engineering Collaboration Platform</title>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-logo">
+            <img src="https://i.ibb.co/JrHmQpr/uni-high-resolution-logo-transparent.png" alt="EngiHub Logo" height="50px" width="50px">
+        </div>
+        <div class="nav-opt">
+            <ul>
+                <li><a class="home" href="index.html">HOME</a></li>
+                <li><a class="about" href="#">ABOUT</a></li>
+                <li><a class="features" href="#">FEATURES</a></li>
+                <li><a class="howitworks" href="#">HOW IT WORKS</a></li>
+                <li><a class="benifits" href="#">BENIFITS</a></li>
+                <li><a class="contact" href="#">CONTACT</a></li>
+            </ul>
+        </div>
+        <div class="burger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+    <div class="introduction">
+        <div class="intro-heading">
+        <h1 class="heading">EngiHub – Engineering Collaboration Platform</h1>
+
+        <div class="sub-head">
+            <h3>Connecting engineers, streamlining projects, and building the future together.</h3>
+        </div>
+        <div class="intro-boxes">
+
+        <div class="get-started-box-client">
+            <h4 class="client-box-heading">Get Started as Client</h4>
+            <form id="signupClientForm" onsubmit="event.preventDefault();signupUser('Client');">
+                <label for="signupClientName">Name:</label>
+                <input type="text" id="signupClientName" placeholder="Name" required>
+                <label for="signupClientEmail">E-mail:</label>
+                <input type="email" id="signupClientEmail" placeholder="E-mail" required>
+                <label for="signupClientPassword">Password:</label>
+                <input type="password" id="signupClientPassword" placeholder="Password" required style="width:100%;height:40px;">
+                <input type="hidden" id="signupClientRole" value="Client">
+                <button type="submit">Sign Up</button>
+                <div id="signupClientMessage" style="margin-top:10px;text-align:center;color:red;font-weight:bold;"></div>
+            </form>
+        </div>
+
+        <div class="get-started-box-engineer">
+            <h4 class="engineer-box-heading">Get Started as Engineer</h4>
+            <form id="signupEngineerForm" onsubmit="event.preventDefault();signupUser('Engineer');">
+                <label for="signupEngineerName">Name:</label>
+                <input type="text" id="signupEngineerName" placeholder="Name" required>
+                <label for="signupEngineerEmail">E-mail:</label>
+                <input type="email" id="signupEngineerEmail" placeholder="E-mail" required>
+                <label for="signupEngineerPassword">Password:</label>
+                <input type="password" id="signupEngineerPassword" placeholder="Password (min 6 chars)" required minlength="6" autocomplete="new-password" style="width:100%;height:40px;">
+                <label for="signupEngineerSpecialization">Specialization:</label>
+                <select id="signupEngineerSpecialization" required>
+                    <option value="">Select specialization</option>
+                    <option value="Civil">Civil Engineer</option>
+                    <option value="Mechanical">Mechanical Engineer</option>
+                    <option value="Electrical">Electrical Engineer</option>
+                    <option value="Software">Software Engineer</option>
+                    <option value="Structural">Structural Engineer</option>
+                    <option value="Chemical">Chemical Engineer</option>
+                    <option value="Aerospace">Aerospace Engineer</option>
+                    <option value="Biomedical">Biomedical Engineer</option>
+                    <option value="Industrial">Industrial Engineer</option>
+                    <option value="Petroleum">Petroleum Engineer</option>
+                    <option value="Computer">Computer Engineer</option>
+                    <option value="Nuclear">Nuclear Engineer</option>
+                    <option value="Marine">Marine Engineer</option>
+                    <option value="Systems">Systems Engineer</option>
+                    <option value="Automotive">Automotive Engineer</option>
+                    <option value="Agricultural">Agricultural Engineer</option>
+                    <option value="Materials">Materials Engineer</option>
+                    <option value="Robotics">Robotics Engineer</option>
+                    <option value="Geotechnical">Geotechnical Engineer</option>
+                    <option value="Telecommunications">Telecommunications Engineer</option>
+                    <option value="Mining">Mining Engineer</option>
+                    <option value="Energy">Energy Engineer</option>
+                    <option value="Mechatronics">Mechatronics Engineer</option>
+                    <option value="Data">Data Engineer</option>
+                </select>
+                <label for="signupEngineerExperience">Experience:</label>
+                <input type="text" id="signupEngineerExperience" placeholder="e.g. 5 years" required>
+                <label for="signupEngineerBio">Bio:</label>
+                <textarea id="signupEngineerBio" placeholder="Short bio" required style="width:100%;min-height:60px;resize:vertical;"></textarea>
+                <input type="hidden" id="signupEngineerRole" value="Engineer">
+                <button type="submit" style="width:100%;margin-top:15px;">Sign Up</button>
+                <div id="signupEngineerMessage" style="margin-top:10px;text-align:center;color:red;font-weight:bold;"></div>
+            </form>
+        </div>
+
+    
+
+</body>
+<script src="scripts.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const burger = document.querySelector(".burger");
+    const navOptions = document.querySelector(".nav-opt ul");
+    burger.addEventListener("click", () => {
+        navOptions.classList.toggle("active");
+    });
+    // No global signupForm, handled per form above
+});
+</script>
+</html>

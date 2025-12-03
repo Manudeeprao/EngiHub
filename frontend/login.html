@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>EngiHub – Engineering Collaboration Platform</title>
+
+	
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	
+	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+	
+	
+	<link rel="stylesheet" type="text/css" href="login.css">
+</head>
+<body>
+	
+	<div id="roleModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="roleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="roleModalLabel">Select Your Role</h5>
+	      </div>
+	      <div class="modal-body text-center">
+	        <p>Please select your role to continue:</p>
+	        <div class="d-flex justify-content-center">
+	          <button id="clientBtn" class="btn btn-primary m-2">Client</button>
+	          <button id="engineerBtn" class="btn btn-secondary m-2">Engineer</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	
+	<div class="container main-container">
+		<div class="d-flex justify-content-center h-100">
+			<div class="card">
+				<div class="card-header">
+					<h1>EngiHub – Engineering Collaboration Platform</h1>
+					<div class="d-flex justify-content-end social_icon">
+						<span><i class="fab fa-facebook-square"></i></span>
+						<span><i class="fab fa-google-plus-square"></i></span>
+						<span><i class="fab fa-twitter-square"></i></span>
+					</div>
+				</div>
+				<div class="card-body">
+					<form id="loginForm" onsubmit="event.preventDefault();loginUserWithRole();">
+						<div class="input-group form-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							<input type="email" class="form-control" id="loginEmail" placeholder="Email" required>
+						</div>
+						<div class="input-group form-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+						</div>
+											<div class="form-group">
+												<input type="submit" value="Login" class="btn float-right login_btn">
+											</div>
+											<div id="loginMessage" style="margin-top:10px;text-align:center;color:red;font-weight:bold;"></div>
+											<div id="selectedRoleDisplay" style="margin-top:10px;text-align:center;font-weight:bold;color:#FFC312;"></div>
+											</form>
+
+						<!-- Load jQuery first -->
+						<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+						<!-- Load Bootstrap JS for modal -->
+						<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+						<!-- Load scripts.js for login logic -->
+						<script src="scripts.js"></script>
+						<script src="login.js"></script>
+						<script>
+						// Store selected role globally
+						let selectedRole = null;
+						function loginUserWithRole() {
+							if (!window.selectedRole) {
+								document.getElementById('loginMessage').textContent = 'Please select your role.';
+								return;
+							}
+							document.getElementById('loginMessage').textContent = '';
+							loginUser(window.selectedRole);
+						}
+						// Show selected role feedback
+						setInterval(() => {
+							const display = document.getElementById('selectedRoleDisplay');
+							if (window.selectedRole) {
+								display.textContent = 'Selected Role: ' + window.selectedRole;
+								display.style.color = window.selectedRole === 'Client' ? '#FFC312' : '#12CBC4';
+							} else {
+								display.textContent = '';
+							}
+						}, 300);
+						</script>
